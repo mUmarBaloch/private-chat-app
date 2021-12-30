@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 Widget chatWidget(
   BuildContext context,
   bool isMine,
+  String name,
   String chat,
+  DateTime time,
 ) =>
     Container(
       decoration: BoxDecoration(
@@ -18,11 +20,19 @@ Widget chatWidget(
           ? EdgeInsets.fromLTRB(20, 2, 0, 10)
           : EdgeInsets.fromLTRB(0, 2, 20, 10),
       child: Container(
-        alignment: isMine ? Alignment.centerLeft : Alignment.centerRight,
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Text(
-          chat,
-          style: TextStyle(color: Colors.white, fontSize: 18),
-        ),
-      ),
+          alignment: isMine ? Alignment.centerLeft : Alignment.centerRight,
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: ListTile(
+              title: Text(
+                chat,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              subtitle: Text(
+                '$name , day: ${time.day}, time:${time.hour}:${time.minute}',
+                style: TextStyle(
+                  color: Colors.white54,
+                ),
+              ))),
     );
