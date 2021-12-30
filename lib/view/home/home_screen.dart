@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String user = Provider.of<User?>(context, listen: false)!.uid;
-    var init = Connectivity();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('ChatApp (umarBDev)'),

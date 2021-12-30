@@ -1,8 +1,10 @@
 import 'package:chat_app/controller/auth_controller.dart';
 import 'package:chat_app/view/auth/auth_screen.dart';
+import 'package:chat_app/view/connection/no_internet.dart';
 import 'package:chat_app/view/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 
 class Wrapper extends StatelessWidget {
@@ -10,8 +12,12 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider.of<User?>(context, listen: true)?.uid != null
-        ? HomeScreen()
-        : AuthScreen();
+    if (Provider.of<InternetConnectionStatus>(context, listen: true) ==
+        InternetConnectionStatus.connected) {
+      return Provider.of<User?>(context, listen: true)?.uid != null
+          ? HomeScreen()
+          : AuthScreen();
+    }
+    return NoInternet();
   }
 }
