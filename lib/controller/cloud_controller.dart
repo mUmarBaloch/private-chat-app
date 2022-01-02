@@ -14,10 +14,7 @@ class Cloud {
   }
 
   deleteChat(Chat chat) async {}
-  Stream<QuerySnapshot<Map<String, dynamic>>> loadChat() {
-    List<DocumentSnapshot>? get;
-    return cloud.collection('chats').snapshots();
+  Stream<QuerySnapshot<Map<String, dynamic>>> loadChat() async* {
+    yield* cloud.collection('chats').snapshots();
   }
-
-  List<Chat> chats = [];
 }

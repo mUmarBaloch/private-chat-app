@@ -16,12 +16,13 @@ class Chat {
         'uid': uid,
         'name': name,
         'chat': chat,
-        'time': time.toString(),
+        'time': Timestamp.fromDate(DateTime.now()),
       };
 
   Chat.fromDocumentSnapshot(DocumentSnapshot map)
       : uid = map['uid'],
         name = map['name'],
         chat = map['chat'],
-        time = DateTime.parse(map['time']);
+        time = DateTime.fromMicrosecondsSinceEpoch(
+            map['time'].microsecondsSinceEpoch);
 }

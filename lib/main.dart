@@ -4,7 +4,7 @@ import 'package:chat_app/controller/auth_controller.dart';
 import 'package:chat_app/controller/cloud_controller.dart';
 import 'package:chat_app/controller/connection_controller.dart';
 import 'package:chat_app/view/auth/auth_screen.dart';
-import 'package:chat_app/view/wraper.dart';
+import 'package:chat_app/view/wrapper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';

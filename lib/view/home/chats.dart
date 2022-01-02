@@ -10,16 +10,20 @@ class Chats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScrollController scrollController =
+        ScrollController(initialScrollOffset: data!.length * 100);
+
     return Expanded(
       child: Container(
           padding: EdgeInsets.symmetric(vertical: 10),
           child: ListView(
-            children: data!.map((e) {
+            reverse: true,
+            shrinkWrap: true,
+            children: data!.reversed.map((e) {
               if (e.uid == user.toString()) {
                 return chatWidget(context, true, e.name, e.chat, e.time);
               }
-
-              return chatWidget(context, false, e.name, e.chat, e.time);
+              return chatWidget(context, true, e.name, e.chat, e.time);
             }).toList(),
           )),
     );
