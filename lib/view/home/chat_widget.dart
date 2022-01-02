@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 Widget chatWidget(
   BuildContext context,
+  int key,
   bool isMine,
   String name,
   String chat,
   DateTime time,
 ) =>
     Container(
+      key: Key(key.toString()),
       decoration: BoxDecoration(
         color: isMine ? Colors.deepPurple : Colors.deepPurple[400],
         borderRadius: BorderRadius.only(

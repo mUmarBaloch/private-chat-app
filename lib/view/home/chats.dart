@@ -14,18 +14,19 @@ class Chats extends StatelessWidget {
         ScrollController(initialScrollOffset: data!.length * 100);
 
     return Expanded(
-      child: Container(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          child: ListView(
-            reverse: true,
-            shrinkWrap: true,
-            children: data!.reversed.map((e) {
-              if (e.uid == user.toString()) {
-                return chatWidget(context, true, e.name, e.chat, e.time);
-              }
-              return chatWidget(context, true, e.name, e.chat, e.time);
-            }).toList(),
-          )),
-    );
+        child: Container(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: ListView.builder(
+                reverse: true,
+                shrinkWrap: true,
+                itemCount: data!.length,
+                itemBuilder: (context, index) {
+                  if (data![index].uid == user) {
+                    return chatWidget(context, index, true, data![index].name,
+                        data![index].chat, data![index].time);
+                  }
+                  return chatWidget(context, index, false, data![index].name,
+                      data![index].chat, data![index].time);
+                })));
   }
 }
