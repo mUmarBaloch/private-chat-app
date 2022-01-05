@@ -3,7 +3,7 @@
 import 'package:chat_app/controller/auth_controller.dart';
 import 'package:chat_app/controller/cloud_controller.dart';
 import 'package:chat_app/controller/connection_controller.dart';
-import 'package:chat_app/view/auth/auth_screen.dart';
+import 'package:chat_app/controller/local_controller.dart';
 import 'package:chat_app/view/wrapper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +15,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await AuthController().initAuth();
+  await LocalController().initLocal();
+  await LocalController().loadData();
   await Cloud().initCloud();
   runApp(MyApp());
 }

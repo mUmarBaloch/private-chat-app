@@ -10,9 +10,6 @@ class Chats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScrollController scrollController =
-        ScrollController(initialScrollOffset: data!.length * 100);
-
     return Expanded(
         child: Container(
             padding: EdgeInsets.symmetric(vertical: 10),

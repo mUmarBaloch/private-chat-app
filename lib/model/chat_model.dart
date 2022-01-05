@@ -4,7 +4,7 @@ class Chat {
   final String uid;
   final String name;
   final String chat;
-  final DateTime time;
+  final Timestamp time;
 
   Chat(
       {required this.uid,
@@ -23,6 +23,5 @@ class Chat {
       : uid = map['uid'],
         name = map['name'],
         chat = map['chat'],
-        time = DateTime.fromMicrosecondsSinceEpoch(
-            map['time'].microsecondsSinceEpoch);
+        time = map['time'];
 }

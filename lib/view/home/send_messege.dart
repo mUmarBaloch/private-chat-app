@@ -1,5 +1,7 @@
 import 'package:chat_app/controller/cloud_controller.dart';
+import 'package:chat_app/controller/local_controller.dart';
 import 'package:chat_app/model/chat_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class SendMessege extends StatelessWidget {
@@ -23,9 +25,9 @@ class SendMessege extends StatelessWidget {
               onPressed: () async {
                 await Cloud().createChat(Chat(
                     uid: user,
-                    name: 'user',
+                    name: userName ?? 'null',
                     chat: textController.text,
-                    time: DateTime.now()));
+                    time: Timestamp.now()));
               },
               icon: Icon(Icons.send)),
         ],

@@ -1,3 +1,5 @@
+import 'package:chat_app/controller/cloud_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 Widget chatWidget(
@@ -6,7 +8,7 @@ Widget chatWidget(
   bool isMine,
   String name,
   String chat,
-  DateTime time,
+  Timestamp time,
 ) =>
     Container(
       key: Key(key.toString()),
@@ -22,19 +24,25 @@ Widget chatWidget(
           ? EdgeInsets.fromLTRB(20, 2, 0, 10)
           : EdgeInsets.fromLTRB(0, 2, 20, 10),
       child: Container(
-          alignment: isMine ? Alignment.centerLeft : Alignment.centerRight,
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: ListTile(
-              title: Text(
-                chat,
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-              subtitle: Text(
-                '$name , day: ${time.day}, time:${time.hour}:${time.minute}',
-                style: TextStyle(
-                  color: Colors.white54,
-                ),
-              ))),
+        alignment: isMine ? Alignment.centerLeft : Alignment.centerRight,
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: ListTile(
+          title: Text(
+            chat,
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          subtitle: Text(
+            '$name , day: ${time.toDate().day.toString()}, time:${time.toDate().hour.toString()}:${time.toDate().minute.toString()}',
+            style: TextStyle(
+              color: Colors.white54,
+            ),
+          ),
+          trailing: IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: () => Cloud().deleteChat(time),
+          ),
+        ),
+      ),
     );

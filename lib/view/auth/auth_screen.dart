@@ -1,4 +1,5 @@
 import 'package:chat_app/controller/auth_controller.dart';
+import 'package:chat_app/controller/local_controller.dart';
 
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,7 @@ class AuthScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
+    final userController = TextEditingController();
     return Container(
       padding: const EdgeInsets.all(20),
       color: Colors.grey[900],
@@ -25,6 +27,10 @@ class AuthScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
+              authInput(userController, 'user name', false),
+              SizedBox(
+                height: 20,
+              ),
               authInput(emailController, 'email', false),
               const SizedBox(
                 height: 20,
@@ -36,11 +42,15 @@ class AuthScreen extends StatelessWidget {
               Row(
                 children: [
                   authBtn('new to app', () async {
+                    await LocalController().setData(userController.text);
+
                     await AuthController().signup(
                         emailController.text.toString(),
                         passwordController.text.toString());
                   }),
                   authBtn('Lets Chat', () async {
+                    await LocalController().setData(userController.text);
+
                     await AuthController()
                         .signin(emailController.text, passwordController.text);
                   }),

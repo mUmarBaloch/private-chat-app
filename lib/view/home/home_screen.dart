@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                stream: cloud.collection('chats').snapshots(),
+                stream: Cloud().loadChat(),
                 builder: (context, snapshot) {
                   var data = snapshot.data?.docs
                       .map((e) => Chat.fromDocumentSnapshot(e))
