@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
-
+import 'package:chat_app/controller/push_notification_controller.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:chat_app/controller/auth_controller.dart';
 import 'package:chat_app/controller/cloud_controller.dart';
 import 'package:chat_app/controller/connection_controller.dart';
@@ -14,6 +15,8 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await PushNotificationController().initPushNotifier();
+  await PushNotificationController().askPermission();
   await AuthController().initAuth();
   await LocalController().initLocal();
   await LocalController().loadData();
@@ -26,6 +29,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PushNotificationController().setupInteractedMessage(context);
     return MultiProvider(
         providers: [
           StreamProvider<User?>(

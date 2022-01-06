@@ -7,6 +7,8 @@ class AuthController {
     _instance = FirebaseAuth.instance;
   }
 
+  String get getUserId => _instance.currentUser!.uid;
+
   signup(String email, String password) async {
     await _instance.createUserWithEmailAndPassword(
         email: email, password: password);

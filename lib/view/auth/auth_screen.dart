@@ -2,6 +2,7 @@ import 'package:chat_app/controller/auth_controller.dart';
 import 'package:chat_app/controller/local_controller.dart';
 
 import 'package:flutter/material.dart';
+import 'package:wakelock/wakelock.dart';
 
 import 'auth_input.dart';
 
@@ -9,6 +10,7 @@ class AuthScreen extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    Wakelock.enable();
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
     final userController = TextEditingController();

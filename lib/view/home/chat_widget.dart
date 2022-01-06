@@ -34,7 +34,7 @@ Widget chatWidget(
             ),
           ),
           subtitle: Text(
-            '$name , day: ${time.toDate().day.toString()}, time:${time.toDate().hour.toString()}:${time.toDate().minute.toString()}',
+            '$name , date:${time.toDate().day.toString()}/${time.toDate().month.toString()}/${time.toDate().year.toString()}\ntime:${time.toDate().hour.toString()}:${time.toDate().minute.toString()}',
             style: TextStyle(
               color: Colors.white54,
             ),

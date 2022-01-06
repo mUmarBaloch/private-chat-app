@@ -1,4 +1,3 @@
-
 import 'package:chat_app/view/auth/auth_screen.dart';
 import 'package:chat_app/view/connection/no_internet.dart';
 import 'package:chat_app/view/home/home_screen.dart';

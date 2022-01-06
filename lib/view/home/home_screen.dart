@@ -2,16 +2,13 @@
 
 import 'package:chat_app/controller/auth_controller.dart';
 import 'package:chat_app/controller/cloud_controller.dart';
+import 'package:chat_app/controller/push_notification_controller.dart';
 import 'package:chat_app/model/chat_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
-
-import 'chat_widget.dart';
+import 'package:wakelock/wakelock.dart';
 import 'chats.dart';
 import 'send_messege.dart';
 
@@ -21,8 +18,9 @@ class HomeScreen extends StatelessWidget {
   final textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    Wakelock.enable();
     String user = Provider.of<User?>(context, listen: false)!.uid;
-
+    PushNotificationController().tokenHandler();
     return Scaffold(
       appBar: AppBar(
         title: Text('ChatApp (umarBDev)'),
