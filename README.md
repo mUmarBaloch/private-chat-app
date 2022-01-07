@@ -1,16 +1,22 @@
 # chat_app
 
-A new Flutter project.
+A chat app build with Flutter and Firebase.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+-Authentication\n
 
-A few resources to get you started if this is your first Flutter project:
+-Send Messege
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+-Delete Messege(within 5 minutes)(not done yet)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+-Send pictures(not done yet)
+
+-Connection integration
+
+## Build and Run 
+
+setup flutter and build, enjoy the app.
+
+## Pull Requests and Contributions are always welcome , Star is required :).
+
