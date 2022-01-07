@@ -30,6 +30,9 @@ class Cloud extends AuthController {
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> loadChat() {
-    return cloud.collection('chats').snapshots();
+    return cloud
+        .collection('chats')
+        .orderBy('time', descending: true)
+        .snapshots();
   }
 }
