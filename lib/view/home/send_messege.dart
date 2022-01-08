@@ -2,11 +2,13 @@ import 'package:chat_app/controller/cloud_controller.dart';
 import 'package:chat_app/controller/local_controller.dart';
 import 'package:chat_app/model/chat_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SendMessege extends StatelessWidget {
   final TextEditingController textController;
-  final user;
+  final User? user;
   SendMessege(this.textController, {required this.user});
 
   @override
@@ -23,11 +25,15 @@ class SendMessege extends StatelessWidget {
           ),
           IconButton(
               onPressed: () async {
-                await Cloud().createChat(Chat(
-                    uid: user,
-                    name: userName ?? 'null',
-                    chat: textController.text,
-                    time: Timestamp.now()));
+                if (textController.text != '') {
+                  await Cloud().createChat(Chat(
+                      uid: user!.uid,
+                      name: userName ?? 'null',
+                      chat: textController.text,
+                      time: Timestamp.now()));
+                  textController.text == '';
+                  SystemChannels.textInput.invokeMethod('TextInput.hide');
+                }
               },
               icon: Icon(Icons.send)),
         ],

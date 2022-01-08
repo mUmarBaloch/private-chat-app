@@ -1,14 +1,15 @@
 import 'package:chat_app/controller/cloud_controller.dart';
+import 'package:chat_app/model/chat_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 Widget chatWidget(
   BuildContext context,
   int key,
   bool isMine,
-  String name,
-  String chat,
-  Timestamp time,
+  Chat chat,
+  User? user,
 ) =>
     Container(
       key: Key(key.toString()),
@@ -28,20 +29,27 @@ Widget chatWidget(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: ListTile(
           title: Text(
-            chat,
+            chat.chat,
             style: TextStyle(
               color: Colors.white,
             ),
           ),
           subtitle: Text(
-            '$name , date:${time.toDate().day.toString()}/${time.toDate().month.toString()}/${time.toDate().year.toString()}\ntime:${time.toDate().hour.toString()}:${time.toDate().minute.toString()}',
+            '${chat.name} , date:${chat.time.toDate().day.toString()}/${chat.time.toDate().month.toString()}/${chat.time.toDate().year.toString()}\ntime:${chat.time.toDate().hour.toString()}:${chat.time.toDate().minute.toString()}',
             style: TextStyle(
               color: Colors.white54,
             ),
           ),
           trailing: IconButton(
             icon: Icon(Icons.delete),
-            onPressed: () => Cloud().deleteChat(time),
+            onPressed: () async {
+              dynamic delete = await Cloud().deleteChat(chat.time, chat, user);
+
+              if (delete == 'null') {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('you cannot delete others messages')));
+              }
+            },
           ),
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:chat_app/controller/auth_controller.dart';
 import 'package:chat_app/controller/cloud_controller.dart';
+import 'package:chat_app/controller/local_controller.dart';
 import 'package:chat_app/view/home/home_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,6 @@ class PushNotificationController extends Cloud {
 
   tokenHandler() async {
     String? token = await msg.getToken();
-    await storeToken(token.toString());
+    await storeToken(token.toString(), userName!);
   }
 }

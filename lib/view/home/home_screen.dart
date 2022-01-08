@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Wakelock.enable();
-    String user = Provider.of<User?>(context, listen: false)!.uid;
+    User? user = Provider.of<User?>(context, listen: false);
     PushNotificationController().tokenHandler();
     return Scaffold(
       appBar: AppBar(
